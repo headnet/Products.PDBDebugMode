@@ -48,6 +48,8 @@ def error(self, msg, *args, **kw):
     else:
         if kw.get('exc_info'):
             type, value, traceback = sys.exc_info()
+            if value.__str__() == "'No blob file'":
+                return result
             post_mortem(traceback)
         else:
             set_trace()
